@@ -5,15 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MySpace Music Profile</title>
 <style>
-  /* ============ RESET & BASE ============ */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* ============ CONFIG — edit these variables to customise ============ */
+  /* ============ THEME — edit CSS variables here ============ */
   :root {
-    --accent:        #3b5998;   /* nav/header blue */
-    --accent2:       #6d84b4;   /* lighter blue */
-    --music-bar:     #1a1a2e;   /* music player bar */
-    --music-accent:  #4fc3f7;   /* player highlight */
+    --accent:        #3b5998;
+    --accent2:       #6d84b4;
+    --music-bar:     #1a1a2e;
+    --music-accent:  #4fc3f7;
     --table-head:    #6d84b4;
     --table-row-alt: #dce4f0;
     --link:          #1d3c7a;
@@ -26,457 +25,115 @@
     --font-body:     'Georgia', serif;
   }
 
-  body {
-    background: var(--bg);
-    font-family: var(--font-ui);
-    font-size: 12px;
-    color: #222;
-    min-height: 100vh;
-  }
-
+  body { background: var(--bg); font-family: var(--font-ui); font-size: 12px; color: #222; min-height: 100vh; }
   a { color: var(--link); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  /* ============ TOP HEADER ============ */
-  #header {
-    background: var(--accent);
-    padding: 6px 10px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  #logo {
-    font-family: 'Times New Roman', serif;
-    font-size: 22px;
-    font-weight: bold;
-    color: #fff;
-    letter-spacing: -1px;
-    white-space: nowrap;
-    user-select: none;
-  }
+  /* HEADER */
+  #header { background: var(--accent); padding: 6px 10px; display: flex; align-items: center; gap: 12px; }
+  #logo { font-family: 'Times New Roman', serif; font-size: 22px; font-weight: bold; color: #fff; letter-spacing: -1px; white-space: nowrap; user-select: none; }
   #logo span { font-style: italic; }
-  #search-bar {
-    flex: 1;
-    max-width: 320px;
-    display: flex;
-    gap: 4px;
-    margin-left: auto;
-  }
-  #search-bar input {
-    flex: 1;
-    padding: 4px 6px;
-    border: 1px solid #ccc;
-    font-size: 11px;
-    font-family: var(--font-ui);
-    border-radius: 2px 0 0 2px;
-  }
-  #search-bar select {
-    padding: 4px;
-    border: 1px solid #ccc;
-    font-size: 11px;
-    background: #f5f5f5;
-    font-family: var(--font-ui);
-    cursor: pointer;
-  }
-  #search-bar button {
-    padding: 4px 10px;
-    background: var(--accent2);
-    color: #fff;
-    border: none;
-    font-size: 11px;
-    font-family: var(--font-ui);
-    cursor: pointer;
-    border-radius: 0 2px 2px 0;
-  }
+  #search-bar { flex: 1; max-width: 320px; display: flex; gap: 4px; margin-left: auto; }
+  #search-bar input { flex: 1; padding: 4px 6px; border: 1px solid #ccc; font-size: 11px; font-family: var(--font-ui); border-radius: 2px 0 0 2px; }
+  #search-bar select { padding: 4px; border: 1px solid #ccc; font-size: 11px; background: #f5f5f5; font-family: var(--font-ui); cursor: pointer; }
+  #search-bar button { padding: 4px 10px; background: var(--accent2); color: #fff; border: none; font-size: 11px; font-family: var(--font-ui); cursor: pointer; border-radius: 0 2px 2px 0; }
   #search-bar button:hover { background: var(--accent); }
   #powered { font-size: 9px; color: #aaccff; text-align: right; line-height: 1.2; }
 
-  /* ============ MAIN NAV ============ */
-  #main-nav {
-    background: var(--accent2);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10px;
-    border-top: 1px solid #8496b0;
-    border-bottom: 2px solid var(--accent);
-  }
+  /* MAIN NAV */
+  #main-nav { background: var(--accent2); display: flex; align-items: center; justify-content: space-between; padding: 0 10px; border-top: 1px solid #8496b0; border-bottom: 2px solid var(--accent); }
   #main-nav .left { display: flex; }
-  #main-nav a {
-    color: #fff;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 6px 10px;
-    display: inline-block;
-    text-decoration: none;
-  }
+  #main-nav a { color: #fff; font-size: 12px; font-weight: bold; padding: 6px 10px; display: inline-block; text-decoration: none; }
   #main-nav a:hover { background: rgba(0,0,0,0.2); text-decoration: none; }
   #main-nav .right { display: flex; gap: 4px; }
-  #main-nav .right a {
-    font-size: 11px;
-    font-weight: normal;
-    padding: 6px 8px;
-  }
+  #main-nav .right a { font-size: 11px; font-weight: normal; padding: 6px 8px; }
 
-  /* ============ MUSIC SUB NAV ============ */
-  #music-nav {
-    background: #e8eef8;
-    border-bottom: 2px solid var(--accent);
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
-    gap: 2px;
-  }
-  #music-nav .icon {
-    font-size: 15px;
-    color: var(--accent);
-    font-weight: bold;
-    margin-right: 6px;
-    padding: 5px 0;
-  }
-  #music-nav a {
-    font-size: 11px;
-    color: var(--accent);
-    font-weight: bold;
-    padding: 5px 8px;
-    text-decoration: none;
-  }
+  /* MUSIC SUB NAV */
+  #music-nav { background: #e8eef8; border-bottom: 2px solid var(--accent); display: flex; align-items: center; padding: 0 10px; gap: 2px; }
+  #music-nav .icon { font-size: 15px; color: var(--accent); font-weight: bold; margin-right: 6px; padding: 5px 0; }
+  #music-nav a { font-size: 11px; color: var(--accent); font-weight: bold; padding: 5px 8px; text-decoration: none; }
   #music-nav a:hover { background: #cdd8ec; text-decoration: none; }
 
-  /* ============ LAYOUT ============ */
-  #page {
-    max-width: 840px;
-    margin: 10px auto;
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 10px;
-    padding: 0 6px;
-  }
-
-  /* ============ LEFT COLUMN ============ */
+  /* LAYOUT */
+  #page { max-width: 840px; margin: 10px auto; display: grid; grid-template-columns: 280px 1fr; gap: 10px; padding: 0 6px; }
   #left { display: flex; flex-direction: column; gap: 10px; }
+  #right { display: flex; flex-direction: column; gap: 10px; }
 
-  .artist-name {
-    font-size: 18px;
-    font-weight: bold;
-    color: #111;
-    line-height: 1;
-  }
-  .artist-genre {
-    font-size: 11px;
-    color: #555;
-    margin-top: 2px;
-  }
-  .artist-photo {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-    border: 2px solid var(--border);
-    display: block;
-    background: #ccc;
-  }
-  .photo-placeholder {
-    width: 140px;
-    height: 140px;
-    background: linear-gradient(135deg, #8496b0 0%, #c4cedb 100%);
-    border: 2px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    color: #fff;
-  }
-
-  .profile-info {
-    font-size: 11px;
-    line-height: 1.8;
-    color: #333;
-  }
-  .online-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    color: var(--green);
-    font-weight: bold;
-    font-size: 11px;
-  }
-  .online-dot {
-    width: 10px; height: 10px;
-    background: var(--green);
-    border-radius: 50%;
-    border: 1px solid #2a6a2a;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
+  /* LEFT — profile */
+  .artist-name { font-size: 18px; font-weight: bold; color: #111; line-height: 1; }
+  .artist-genre { font-size: 11px; color: #555; margin-top: 2px; }
+  .artist-photo { width: 140px; height: 140px; object-fit: cover; border: 2px solid var(--border); display: block; background: #ccc; }
+  .photo-placeholder { width: 140px; height: 140px; background: linear-gradient(135deg, #8496b0 0%, #c4cedb 100%); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #fff; }
+  .profile-info { font-size: 11px; line-height: 1.8; color: #333; }
+  .online-badge { display: inline-flex; align-items: center; gap: 4px; color: var(--green); font-weight: bold; font-size: 11px; }
+  .online-dot { width: 10px; height: 10px; background: var(--green); border-radius: 50%; border: 1px solid #2a6a2a; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
   .view-links { display: flex; gap: 8px; font-size: 11px; }
   .view-links a { font-weight: bold; }
 
-  /* Contact table */
-  .panel {
-    background: var(--panel);
-    border: 1px solid var(--border);
-  }
-  .panel-header {
-    background: var(--table-head);
-    color: #fff;
-    font-weight: bold;
-    font-size: 11px;
-    padding: 4px 8px;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-  }
+  /* PANELS */
+  .panel { background: var(--panel); border: 1px solid var(--border); }
+  .panel-header { background: var(--table-head); color: #fff; font-weight: bold; font-size: 11px; padding: 4px 8px; text-align: center; border-bottom: 1px solid var(--border); }
   .panel-body { padding: 6px 8px; }
 
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px 8px;
-  }
-  .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    padding: 2px 0;
-    cursor: pointer;
-  }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 8px; }
+  .contact-item { display: flex; align-items: center; gap: 5px; font-size: 11px; padding: 2px 0; cursor: pointer; }
   .contact-item:hover { text-decoration: underline; }
-  .contact-icon {
-    width: 18px;
-    height: 18px;
-    background: var(--accent2);
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    color: white;
-    flex-shrink: 0;
-  }
+  .contact-icon { width: 18px; height: 18px; background: var(--accent2); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: white; flex-shrink: 0; }
 
-  /* URL box */
-  .url-box {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 6px 8px;
-    font-size: 11px;
-  }
+  .url-box { background: var(--panel); border: 1px solid var(--border); padding: 6px 8px; font-size: 11px; }
   .url-box strong { display: block; margin-bottom: 2px; }
-  .url-box a { color: var(--link); word-break: break-all; }
 
-  /* General info table */
   .info-table { width: 100%; border-collapse: collapse; font-size: 11px; }
-  .info-table td {
-    padding: 4px 6px;
-    border: 1px solid var(--border);
-    vertical-align: top;
-  }
+  .info-table td { padding: 4px 6px; border: 1px solid var(--border); vertical-align: top; }
   .info-table tr:nth-child(even) td { background: var(--table-row-alt); }
-  .info-table td:first-child {
-    background: var(--table-head);
-    color: #fff;
-    font-weight: bold;
-    white-space: nowrap;
-    width: 90px;
-  }
+  .info-table td:first-child { background: var(--table-head); color: #fff; font-weight: bold; white-space: nowrap; width: 90px; }
   .info-table tr:nth-child(even) td:first-child { background: #8496b0; }
 
-  /* ============ RIGHT COLUMN ============ */
-  #right { display: flex; flex-direction: column; gap: 10px; }
-
-  /* ============ MUSIC PLAYER ============ */
-  #player-panel {
-    background: var(--music-bar);
-    border: 1px solid #333;
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  #player-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 10px;
-    background: #111;
-    color: #aaa;
-    font-size: 11px;
-  }
-  #player-header .music-logo {
-    color: var(--music-accent);
-    font-weight: bold;
-    font-size: 13px;
-  }
+  /* PLAYER */
+  #player-panel { background: var(--music-bar); border: 1px solid #333; border-radius: 2px; overflow: hidden; }
+  #player-header { display: flex; justify-content: space-between; align-items: center; padding: 5px 10px; background: #111; color: #aaa; font-size: 11px; }
+  #player-header .music-logo { color: var(--music-accent); font-weight: bold; font-size: 13px; }
   #player-header a { color: #aaa; font-size: 10px; }
-
-  #player-main {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 0;
-  }
-  #player-thumb {
-    width: 80px; height: 80px;
-    background: linear-gradient(135deg, #2a2a4a, #1a1a2e);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    flex-shrink: 0;
-  }
-  #player-controls {
-    padding: 8px 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: var(--music-bar);
-  }
-  #player-buttons {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .player-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #fff;
-    font-size: 18px;
-    padding: 2px;
-    line-height: 1;
-    transition: color 0.15s;
-  }
+  #player-main { display: grid; grid-template-columns: 80px 1fr; }
+  #player-thumb { width: 80px; height: 80px; background: linear-gradient(135deg, #2a2a4a, #1a1a2e); display: flex; align-items: center; justify-content: center; font-size: 30px; flex-shrink: 0; }
+  #player-controls { padding: 8px 10px; display: flex; flex-direction: column; justify-content: space-between; background: var(--music-bar); }
+  #player-buttons { display: flex; align-items: center; gap: 6px; }
+  .player-btn { background: none; border: none; cursor: pointer; color: #fff; font-size: 18px; padding: 2px; line-height: 1; transition: color 0.15s; }
   .player-btn:hover { color: var(--music-accent); }
-  #play-btn {
-    width: 30px; height: 30px;
-    background: var(--music-accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    color: var(--music-bar);
-    border: none;
-    cursor: pointer;
-    transition: background 0.15s;
-    flex-shrink: 0;
-  }
+  #play-btn { width: 30px; height: 30px; background: var(--music-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--music-bar); border: none; cursor: pointer; transition: background 0.15s; flex-shrink: 0; }
   #play-btn:hover { background: #81d4fa; }
-  .player-icons {
-    display: flex;
-    gap: 8px;
-    margin-left: auto;
-  }
-  .player-icons button {
-    background: none;
-    border: none;
-    color: #888;
-    font-size: 12px;
-    cursor: pointer;
-  }
+  .player-icons { display: flex; gap: 8px; margin-left: auto; }
+  .player-icons button { background: none; border: none; color: #888; font-size: 12px; cursor: pointer; }
   .player-icons button:hover { color: var(--music-accent); }
-  #now-playing-title {
-    color: #fff;
-    font-weight: bold;
-    font-size: 13px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  #now-playing-title { color: #fff; font-weight: bold; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #now-playing-artist { color: #aaa; font-size: 11px; }
-
-  #progress-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
   #current-time, #total-time { color: #888; font-size: 10px; white-space: nowrap; }
-  #progress-bar-wrap {
-    flex: 1;
-    height: 6px;
-    background: #444;
-    border-radius: 3px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  #progress-bar-fill {
-    height: 100%;
-    width: 0%;
-    background: var(--music-accent);
-    border-radius: 3px;
-    transition: width 0.5s linear;
-    pointer-events: none;
-  }
+  #progress-bar-wrap { flex: 1; height: 6px; background: #444; border-radius: 3px; cursor: pointer; overflow: hidden; }
+  #progress-bar-fill { height: 100%; width: 0%; background: var(--music-accent); border-radius: 3px; transition: width 0.5s linear; pointer-events: none; }
+  #volume-wrap { display: flex; align-items: center; gap: 6px; padding: 4px 10px 6px; background: var(--music-bar); }
+  #volume-wrap label { color: #888; font-size: 10px; }
+  input[type="range"]#volume-slider { width: 70px; height: 4px; accent-color: var(--music-accent); cursor: pointer; }
 
-  /* Track list */
-  #tracklist {
-    background: #111;
-  }
-  .track-row {
-    display: flex;
-    align-items: center;
-    padding: 6px 10px;
-    border-bottom: 1px solid #222;
-    cursor: pointer;
-    transition: background 0.1s;
-  }
+  /* TRACKLIST */
+  #tracklist { background: #111; }
+  .track-row { display: flex; align-items: center; padding: 6px 10px; border-bottom: 1px solid #222; cursor: pointer; transition: background 0.1s; }
   .track-row:hover { background: #222; }
   .track-row.active { background: #1a2a3a; }
-  .track-play-icon {
-    width: 14px;
-    text-align: center;
-    color: var(--music-accent);
-    font-size: 10px;
-    margin-right: 8px;
-    flex-shrink: 0;
-  }
+  .track-play-icon { width: 14px; text-align: center; color: var(--music-accent); font-size: 10px; margin-right: 8px; flex-shrink: 0; }
   .track-title { color: #e0e0e0; font-size: 12px; flex: 1; }
   .track-artist { color: #888; font-size: 10px; }
   .track-plays { color: #888; font-size: 10px; margin-left: 8px; white-space: nowrap; }
-  .track-dots { color: #555; margin-left: 8px; letter-spacing: 2px; font-size: 14px; cursor: pointer; }
 
-  /* Tab bar */
-  #tab-bar {
-    display: flex;
-    align-items: center;
-    background: #1a1a2e;
-    border-top: 1px solid #333;
-    padding: 0 10px;
-  }
-  .tab-btn {
-    color: #888;
-    font-size: 11px;
-    padding: 5px 10px;
-    cursor: pointer;
-    border: none;
-    background: none;
-    font-family: var(--font-ui);
-    border-bottom: 2px solid transparent;
-    transition: color 0.15s;
-  }
+  /* TAB BAR */
+  #tab-bar { display: flex; align-items: center; background: #1a1a2e; border-top: 1px solid #333; padding: 0 10px; }
+  .tab-btn { color: #888; font-size: 11px; padding: 5px 10px; cursor: pointer; border: none; background: none; font-family: var(--font-ui); border-bottom: 2px solid transparent; transition: color 0.15s; }
   .tab-btn:hover, .tab-btn.active { color: var(--music-accent); border-bottom-color: var(--music-accent); }
-  #tab-plays-today {
-    margin-left: auto;
-    color: #888;
-    font-size: 10px;
-    text-align: right;
-  }
+  #tab-plays-today { margin-left: auto; color: #888; font-size: 10px; text-align: right; }
   #tab-plays-today span { color: var(--music-accent); font-weight: bold; }
 
-  /* ============ SHOWS ============ */
-  .shows-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--table-head);
-    color: #fff;
-    font-weight: bold;
-    font-size: 12px;
-    padding: 5px 8px;
-    border: 1px solid var(--border);
-    border-bottom: none;
-  }
+  /* SHOWS */
+  .shows-header { display: flex; justify-content: space-between; align-items: center; background: var(--table-head); color: #fff; font-weight: bold; font-size: 12px; padding: 5px 8px; border: 1px solid var(--border); border-bottom: none; }
   .shows-header a { color: #dce4f0; font-size: 10px; font-weight: normal; }
   .shows-table { width: 100%; border-collapse: collapse; font-size: 11px; border: 1px solid var(--border); }
   .shows-table td { padding: 5px 8px; border-bottom: 1px solid #dce4f0; background: #fff; }
@@ -486,152 +143,22 @@
   .show-venue { font-weight: bold; color: var(--link); }
   .show-location { color: #555; text-align: right; }
 
-  /* ============ BLOG / ABOUT ============ */
-  .blog-header {
-    font-size: 13px;
-    font-weight: bold;
-    color: var(--link);
-    margin-bottom: 4px;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 3px;
-  }
+  /* ABOUT */
+  .blog-header { font-size: 13px; font-weight: bold; color: var(--link); margin-bottom: 4px; border-bottom: 1px solid var(--border); padding-bottom: 3px; }
   .blog-links { font-size: 11px; margin-bottom: 6px; }
   .blog-links a { margin-right: 4px; }
-  .about-header {
-    background: var(--orange);
-    color: #fff;
-    font-weight: bold;
-    font-size: 12px;
-    padding: 4px 8px;
-    border: 1px solid #c08010;
-    border-bottom: none;
-  }
-  .about-body {
-    background: #fff;
-    border: 1px solid var(--border);
-    padding: 10px;
-    font-family: var(--font-body);
-    font-size: 12px;
-    line-height: 1.7;
-    color: #333;
-  }
+  .about-header { background: var(--orange); color: #fff; font-weight: bold; font-size: 12px; padding: 4px 8px; border: 1px solid #c08010; border-bottom: none; }
+  .about-body { background: #fff; border: 1px solid var(--border); padding: 10px; font-family: var(--font-body); font-size: 12px; line-height: 1.7; color: #333; }
   .about-body p { margin-bottom: 8px; }
   .about-body p:last-child { margin-bottom: 0; }
 
-  /* ============ FILE UPLOAD UI ============ */
-  .upload-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 4px;
-  }
-  .upload-row label {
-    font-size: 11px;
-    font-weight: bold;
-    white-space: nowrap;
-    min-width: 70px;
-  }
-  .upload-row input[type="file"],
-  .upload-row input[type="text"],
-  .upload-row input[type="url"],
-  .upload-row textarea {
-    font-size: 11px;
-    font-family: var(--font-ui);
-    padding: 3px 5px;
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    flex: 1;
-    min-width: 0;
-  }
-  .upload-row textarea { min-height: 60px; resize: vertical; }
-  .btn-small {
-    padding: 3px 10px;
-    font-size: 11px;
-    font-family: var(--font-ui);
-    background: var(--accent2);
-    color: #fff;
-    border: 1px solid var(--accent);
-    border-radius: 2px;
-    cursor: pointer;
-    white-space: nowrap;
-  }
+  /* ADD TRACK (player section) */
+  .add-track-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
+  .add-track-row label { font-size: 11px; font-weight: bold; color: #aaa; white-space: nowrap; min-width: 60px; }
+  .add-track-row input { font-size: 11px; font-family: var(--font-ui); padding: 3px 5px; border: 1px solid #444; border-radius: 2px; flex: 1; min-width: 0; background: #222; color: #eee; }
+  .btn-small { padding: 3px 10px; font-size: 11px; font-family: var(--font-ui); background: var(--accent2); color: #fff; border: 1px solid var(--accent); border-radius: 2px; cursor: pointer; white-space: nowrap; }
   .btn-small:hover { background: var(--accent); }
-  #customise-panel .panel-body { display: flex; flex-direction: column; gap: 6px; }
 
-  /* ============ EDIT MODAL ============ */
-  #edit-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-  }
-  #edit-modal.open { display: flex; }
-  #edit-box {
-    background: #fff;
-    border: 2px solid var(--accent);
-    width: 420px;
-    max-width: 96vw;
-    box-shadow: 4px 4px 16px rgba(0,0,0,0.4);
-  }
-  #edit-box-header {
-    background: var(--accent);
-    color: #fff;
-    font-weight: bold;
-    font-size: 12px;
-    padding: 5px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  #edit-box-header button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 15px;
-    cursor: pointer;
-    line-height: 1;
-  }
-  #edit-box-body {
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    font-size: 12px;
-  }
-  #edit-box-body label { font-weight: bold; display: block; margin-bottom: 2px; }
-  #edit-box-body input, #edit-box-body textarea, #edit-box-body select {
-    width: 100%;
-    padding: 4px 6px;
-    border: 1px solid var(--border);
-    font-size: 11px;
-    font-family: var(--font-ui);
-    border-radius: 2px;
-  }
-  #edit-box-body textarea { min-height: 80px; resize: vertical; }
-  #edit-box-footer {
-    padding: 8px 12px;
-    background: #f0f4f8;
-    border-top: 1px solid var(--border);
-    display: flex;
-    gap: 8px;
-    justify-content: flex-end;
-  }
-
-  /* ============ VOLUME ============ */
-  #volume-wrap { display: flex; align-items: center; gap: 6px; padding: 4px 10px 6px; background: var(--music-bar); }
-  #volume-wrap label { color: #888; font-size: 10px; }
-  input[type="range"]#volume-slider {
-    width: 70px;
-    height: 4px;
-    accent-color: var(--music-accent);
-    cursor: pointer;
-  }
-
-  /* ============ RESPONSIVE ============ */
   @media (max-width: 640px) {
     #page { grid-template-columns: 1fr; }
     #main-nav .right { display: none; }
@@ -646,11 +173,7 @@
   <div id="logo">my<span>space</span><sub style="font-size:10px;vertical-align:super;font-style:normal;">.</sub></div>
   <div id="search-bar">
     <input type="text" placeholder="Find a favorite artist, song or album" id="search-input">
-    <select>
-      <option>Music</option>
-      <option>Artists</option>
-      <option>Songs</option>
-    </select>
+    <select><option>Music</option><option>Artists</option><option>Songs</option></select>
     <button onclick="alert('Search: ' + document.getElementById('search-input').value)">Search</button>
   </div>
   <div id="powered" style="margin-left:4px">POWERED BY<br><strong>Google</strong></div>
@@ -659,69 +182,44 @@
 <!-- ===== MAIN NAV ===== -->
 <div id="main-nav">
   <div class="left">
-    <a href="#">Home</a>
-    <a href="#">Mail ▼</a>
-    <a href="#">Profile ▼</a>
-    <a href="#">Friends ▼</a>
-    <a href="#" style="color:#ffe080">Music</a>
-    <a href="#">Video</a>
-    <a href="#">Games</a>
-    <a href="#">More ▼</a>
+    <a href="#">Home</a><a href="#">Mail ▼</a><a href="#">Profile ▼</a>
+    <a href="#">Friends ▼</a><a href="#" style="color:#ffe080">Music</a>
+    <a href="#">Video</a><a href="#">Games</a><a href="#">More ▼</a>
   </div>
-  <div class="right">
-    <a href="#">My Account</a>
-    <a href="#">Sign Out</a>
-  </div>
+  <div class="right"><a href="#">My Account</a><a href="#">Sign Out</a></div>
 </div>
 
 <!-- ===== MUSIC SUB NAV ===== -->
 <div id="music-nav">
   <div class="icon">♪ music</div>
-  <a href="#">My Music</a>
-  <a href="#">Music Videos</a>
-  <a href="#">Charts</a>
-  <a href="#">New Releases</a>
-  <a href="#">Featured Playlists</a>
-  <a href="#">Karaoke</a>
-  <a href="#">Shows</a>
-  <a href="#">Forums</a>
+  <a href="#">My Music</a><a href="#">Music Videos</a><a href="#">Charts</a>
+  <a href="#">New Releases</a><a href="#">Featured Playlists</a>
+  <a href="#">Karaoke</a><a href="#">Shows</a><a href="#">Forums</a>
 </div>
 
-<!-- ===== MAIN PAGE ===== -->
+<!-- ===== PAGE ===== -->
 <div id="page">
 
-  <!-- ===== LEFT COLUMN ===== -->
+  <!-- LEFT -->
   <div id="left">
-
     <div>
-      <div class="artist-name" id="disp-name">Living Perfection</div>
-      <div class="artist-genre" id="disp-genre">Disco / Genre / Genre</div>
+      <div class="artist-name" id="disp-name"></div>
+      <div class="artist-genre" id="disp-genre"></div>
     </div>
 
     <div style="display:flex;gap:10px;align-items:flex-start">
-      <div>
-        <div class="photo-placeholder" id="photo-wrap">🎵</div>
-      </div>
+      <div id="photo-wrap"><div class="photo-placeholder">🎵</div></div>
       <div class="profile-info" style="flex:1">
-        <div id="disp-location">Auckland<br>New Zealand</div>
-        <br>
-        Profile Views: <strong id="disp-views">0</strong>
-        <br><br>
-        <div class="online-badge"><div class="online-dot"></div> Online Now!</div>
-        <br><br>
-        Last Login: <span id="disp-lastlogin">1/1/2010</span>
-        <br><br>
-        <div class="view-links">
-          <a href="#">Pics</a> |
-          <a href="#">Videos</a> |
-          <a href="#">Playlists</a>
-        </div>
+        <div id="disp-location"></div><br>
+        Profile Views: <strong id="disp-views"></strong><br><br>
+        <div class="online-badge"><div class="online-dot"></div> Online Now!</div><br><br>
+        Last Login: <span id="disp-lastlogin"></span><br><br>
+        <div class="view-links"><a href="#">Pics</a> | <a href="#">Videos</a> | <a href="#">Playlists</a></div>
       </div>
     </div>
 
-    <!-- CONTACT BOX -->
     <div class="panel">
-      <div class="panel-header">Contacting <span id="disp-name2">Artist</span></div>
+      <div class="panel-header">Contacting <span id="disp-name2"></span></div>
       <div class="panel-body">
         <div class="contact-grid">
           <div class="contact-item"><div class="contact-icon">✉</div> Send Message</div>
@@ -736,109 +234,48 @@
       </div>
     </div>
 
-    <!-- URL -->
     <div class="url-box">
       <strong>MySpace URL:</strong>
-      <a href="#" id="disp-url">www.myspace.com/livingperfection</a>
+      <a href="#" id="disp-url"></a>
     </div>
 
-    <!-- GENERAL INFO -->
     <div class="panel">
-      <div class="panel-header" id="disp-name3">Artist</div>
+      <div class="panel-header" id="disp-info-header"></div>
       <div class="panel-body" style="padding:0">
-        <table class="info-table" id="info-table">
-          <tr><td>Member Since</td><td id="info-since">1/1/2010</td></tr>
-          <tr><td>Band Members</td><td id="info-members">Mate Vella</td></tr>
-          <tr><td>Influences</td><td id="info-influences">Susan Boyle</td></tr>
-          <tr><td>Type of Label</td><td id="info-label">Sunreturn</td></tr>
+        <table class="info-table">
+          <tr><td>Member Since</td><td id="info-since"></td></tr>
+          <tr><td>Band Members</td><td id="info-members"></td></tr>
+          <tr><td>Influences</td><td id="info-influences"></td></tr>
+          <tr><td>Type of Label</td><td id="info-label"></td></tr>
         </table>
       </div>
     </div>
+  </div>
 
-    <!-- CUSTOMISE PANEL -->
-    <div class="panel" id="customise-panel">
-      <div class="panel-header" style="cursor:pointer" onclick="toggleCustomise()">⚙ Customise Profile ▼</div>
-      <div class="panel-body" id="customise-body" style="display:none">
-
-        <div class="upload-row">
-          <label>Photo:</label>
-          <input type="file" accept="image/*" id="photo-upload" onchange="loadPhoto(this)">
-        </div>
-
-        <div class="upload-row">
-          <label>Name:</label>
-          <input type="text" id="inp-name" placeholder="Your artist name">
-        </div>
-        <div class="upload-row">
-          <label>Genre:</label>
-          <input type="text" id="inp-genre" placeholder="e.g. Indie / Pop / Rock">
-        </div>
-        <div class="upload-row">
-          <label>Location:</label>
-          <input type="text" id="inp-location" placeholder="City, Country">
-        </div>
-        <div class="upload-row">
-          <label>URL slug:</label>
-          <input type="text" id="inp-url" placeholder="yoururl">
-        </div>
-        <div class="upload-row">
-          <label>Member since:</label>
-          <input type="text" id="inp-since" placeholder="1/1/2010">
-        </div>
-        <div class="upload-row">
-          <label>Members:</label>
-          <input type="text" id="inp-members" placeholder="Full band names">
-        </div>
-        <div class="upload-row">
-          <label>Influences:</label>
-          <input type="text" id="inp-influences" placeholder="Artist 1, Artist 2...">
-        </div>
-        <div class="upload-row">
-          <label>Label:</label>
-          <input type="text" id="inp-label" placeholder="Unsigned / Independent...">
-        </div>
-        <div class="upload-row">
-          <label>About:</label>
-          <textarea id="inp-about" placeholder="Your bio / about text..."></textarea>
-        </div>
-
-        <div style="border-top:1px solid var(--border);padding-top:6px;font-weight:bold;font-size:11px;color:#555">Upcoming Shows</div>
-        <div id="show-inputs"></div>
-        <button class="btn-small" onclick="addShowInput()">+ Add Show</button>
-
-        <div style="margin-top:4px">
-          <button class="btn-small" onclick="applyChanges()" style="background:var(--green);border-color:#2a6a2a">✓ Apply Changes</button>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /left -->
-
-  <!-- ===== RIGHT COLUMN ===== -->
+  <!-- RIGHT -->
   <div id="right">
 
-    <!-- MUSIC PLAYER -->
+    <!-- PLAYER -->
     <div id="player-panel">
       <div id="player-header">
         <div class="music-logo">♪ music</div>
         <a href="#" onclick="return false">Pop Out Player</a>
       </div>
       <div id="player-main">
-        <div id="player-thumb" id="album-art">🎵</div>
+        <div id="player-thumb">🎵</div>
         <div id="player-controls">
           <div>
             <div id="now-playing-title">No track loaded</div>
-            <div id="now-playing-artist" id="disp-name4">—</div>
+            <div id="now-playing-artist"></div>
           </div>
           <div id="player-buttons">
-            <button class="player-btn" onclick="prevTrack()" title="Previous">⏮</button>
+            <button class="player-btn" onclick="prevTrack()">⏮</button>
             <button id="play-btn" onclick="togglePlay()">▶</button>
-            <button class="player-btn" onclick="nextTrack()" title="Next">⏭</button>
+            <button class="player-btn" onclick="nextTrack()">⏭</button>
             <div class="player-icons">
               <button title="Lyrics">Lyrics</button>
-              <button title="Shuffle" onclick="toggleShuffle()" id="shuffle-btn">🔀</button>
-              <button title="Repeat" onclick="toggleRepeat()" id="repeat-btn">🔁</button>
-              <button title="Volume">🔊</button>
+              <button id="shuffle-btn" onclick="toggleShuffle()" title="Shuffle">🔀</button>
+              <button id="repeat-btn" onclick="toggleRepeat()" title="Repeat">🔁</button>
             </div>
           </div>
         </div>
@@ -847,23 +284,16 @@
         <label>Vol:</label>
         <input type="range" id="volume-slider" min="0" max="1" step="0.02" value="0.8" oninput="setVolume(this.value)">
       </div>
-      <div id="progress-row" style="padding:0 10px 8px;display:flex;align-items:center;gap:6px;background:var(--music-bar)">
+      <div style="padding:0 10px 8px;display:flex;align-items:center;gap:6px;background:var(--music-bar)">
         <span id="current-time">0:00</span>
-        <div id="progress-bar-wrap" onclick="seekTo(event)">
-          <div id="progress-bar-fill"></div>
-        </div>
+        <div id="progress-bar-wrap" onclick="seekTo(event)"><div id="progress-bar-fill"></div></div>
         <span id="total-time">0:00</span>
       </div>
-
-      <!-- TRACK LIST -->
       <div id="tracklist"></div>
-
-      <!-- TAB BAR -->
       <div id="tab-bar">
-        <button class="tab-btn active" onclick="setTab(this,'albums')">Albums (0)</button>
-        <button class="tab-btn" onclick="setTab(this,'videos')">Videos (0)</button>
-        <button class="tab-btn" onclick="setTab(this,'playlists')">Playlists (0)</button>
-        <button class="tab-btn" onclick="setTab(this,'more')">●</button>
+        <button class="tab-btn active" onclick="setTab(this)">Albums (0)</button>
+        <button class="tab-btn" onclick="setTab(this)">Videos (0)</button>
+        <button class="tab-btn" onclick="setTab(this)">Playlists (0)</button>
         <div id="tab-plays-today">
           Plays today: <span id="plays-today">0</span><br>
           Total plays: <span id="plays-total">0</span>
@@ -873,223 +303,175 @@
       <!-- ADD TRACK -->
       <div style="padding:8px 10px;background:#0d0d1e;border-top:1px solid #333">
         <div style="color:#888;font-size:11px;font-weight:bold;margin-bottom:6px">+ Add Track</div>
-        <div class="upload-row">
-          <label style="color:#aaa">Title:</label>
-          <input type="text" id="track-title-inp" placeholder="Track name" style="background:#222;color:#eee;border-color:#444">
+        <div class="add-track-row">
+          <label>Title:</label>
+          <input type="text" id="track-title-inp" placeholder="Track name">
         </div>
-        <div class="upload-row" style="margin-top:4px">
-          <label style="color:#aaa">File:</label>
+        <div class="add-track-row" style="margin-top:4px">
+          <label>File:</label>
           <input type="file" accept="audio/*" id="track-file-inp" style="color:#aaa;font-size:10px">
         </div>
-        <div class="upload-row" style="margin-top:4px">
-          <label style="color:#aaa">— or URL:</label>
-          <input type="url" id="track-url-inp" placeholder="https://... (.mp3 / .ogg etc)" style="background:#222;color:#eee;border-color:#444">
+        <div class="add-track-row" style="margin-top:4px">
+          <label>— or URL:</label>
+          <input type="url" id="track-url-inp" placeholder="https://… (.mp3 / .ogg etc)">
         </div>
         <button class="btn-small" onclick="addTrack()" style="margin-top:6px">+ Add to Playlist</button>
       </div>
     </div>
 
-    <!-- UPCOMING SHOWS -->
+    <!-- SHOWS -->
     <div>
-      <div class="shows-header">
-        Upcoming Shows
-        <a href="#" onclick="openEditShows(); return false">(view all)</a>
-      </div>
-      <table class="shows-table" id="shows-table">
-        <tr>
-          <td colspan="4" style="color:#888;text-align:center">No shows added yet</td>
-        </tr>
-      </table>
+      <div class="shows-header">Upcoming Shows <a href="#" onclick="return false">(view all)</a></div>
+      <table class="shows-table" id="shows-table"></table>
     </div>
 
-    <!-- BLOG / ABOUT -->
+    <!-- ABOUT -->
     <div>
-      <div class="blog-header" id="disp-blog-header">Artist's Latest Blog Entry &nbsp;<a href="#" style="font-size:10px;font-weight:normal">[Subscribe to this Blog]</a></div>
-      <div class="blog-links">
-        <a href="#">[View All Blog Entries]</a>
-      </div>
-      <div class="about-header">About <span id="disp-about-name">Artist</span></div>
-      <div class="about-body" id="disp-about">
-        <p>Add your bio in the Customise panel on the left.</p>
-      </div>
+      <div class="blog-header" id="disp-blog-header"></div>
+      <div class="blog-links"><a href="#">[View All Blog Entries]</a></div>
+      <div class="about-header">About <span id="disp-about-name"></span></div>
+      <div class="about-body" id="disp-about"></div>
     </div>
 
-  </div><!-- /right -->
-
-</div><!-- /page -->
-
-<!-- ===== HIDDEN AUDIO ELEMENT ===== -->
-<audio id="audio-player" preload="none"></audio>
-
-<!-- ===== EDIT MODAL (shows) ===== -->
-<div id="edit-modal">
-  <div id="edit-box">
-    <div id="edit-box-header">
-      Edit Shows
-      <button onclick="closeModal()">✕</button>
-    </div>
-    <div id="edit-box-body" id="modal-body"></div>
-    <div id="edit-box-footer">
-      <button class="btn-small" onclick="closeModal()">Close</button>
-    </div>
   </div>
 </div>
 
+<audio id="audio-player" preload="none"></audio>
+
 <script>
 /* =====================================================================
-   DATA MODEL
+   ██████╗ ██████╗  ██████╗ ███████╗██╗██╗     ███████╗
+   ██╔══██╗██╔══██╗██╔═══██╗██╔════╝██║██║     ██╔════╝
+   ██████╔╝██████╔╝██║   ██║█████╗  ██║██║     █████╗
+   ██╔═══╝ ██╔══██╗██║   ██║██╔══╝  ██║██║     ██╔══╝
+   ██║     ██║  ██║╚██████╔╝██║     ██║███████╗███████╗
+   ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝
+
+   Edit the CONFIG object below to customise your profile.
    ===================================================================== */
-let profile = {
-  name: "Artist Name",
-  genre: "Genre / Genre / Genre",
-  location: "City\nCountry",
-  url: "yoururl",
-  since: "1/1/2010",
-  members: "Member names here",
-  influences: "Artist influences here",
-  label: "Unsigned",
-  about: "Add your bio in the Customise panel on the left.",
-  views: Math.floor(Math.random() * 800) + 50,
-  lastlogin: new Date().toLocaleDateString()
+
+const CONFIG = {
+
+  /* ---------- IDENTITY ---------- */
+  name:       "Living Perfectioon",
+  genre:      "Disco / Pop / Rock",
+  location:   "Auckland\nNew Zealand",
+  urlSlug:    "livingperfection",             // → www.myspace.com/peixz
+  memberSince:"04/05/2005",
+  bandMembers:"Mate Vella",
+  influences: "Too many to list them all. They include Susan Boyle, U2, Frankie Stevens, The Mormon Tabernacle Choir, and more.",
+  label:      "Sunreturn",
+  profileViews: 017,
+
+  /* ---------- PHOTO ----------
+     Place your image file in the same folder as this HTML file,
+     then set the filename here, e.g. "photo.jpg".
+     Subfolders work too: "images/photo.jpg"
+     Leave as "" to show the default music-note placeholder.    */
+  photoSrc:   "",
+
+  /* ---------- ABOUT / BIO ----------
+     Use \n to separate paragraphs.                             */
+  about: `Making music is one of my life-long hobbies. I've been playing the acoustic guitar on-and-off since I was 14. I've always loved singing but I grew up with different genres of music: the "Ave Maria", Broadway and Disney kind. I was in the school and church choirs back in the day. I even performed in Carnegie Hall on my first trip to the States with my high school choir.
+
+Just recently, I started taking this guitar-playing and singing rock/pop/indie songs more seriously. And hence, the creation of this MySpace profile.`,
+
+  /* ---------- UPCOMING SHOWS ----------
+     Add as many objects as you like. Set to [] for none.       */
+  shows: [
+    { date: "Mar 20 2010", time: "7:00P", venue: "Freshy's Cafe",  location: "Seattle, Washington" },
+    { date: "Apr 03 2010", time: "8:00P", venue: "The Tractor Tavern", location: "Seattle, Washington" },
+  ],
+
+  /* ---------- TRACKS ----------
+     Place your audio files in the same folder as this HTML file,
+     then reference them by filename. Subfolders work too.
+     You can also use full URLs for hosted files.
+     Leave as [] to add tracks manually via the player UI at runtime.
+
+     Examples:
+       { title: "Greenlake",  src: "greenlake.mp3" }
+       { title: "I Love You", src: "audio/i-love-you.mp3" }
+       { title: "Remote",     src: "https://example.com/song.mp3" }   */
+  tracks: [
+    // { title: "Song Title", src: "filename.mp3" },
+  ],
+
 };
 
-let shows = [];
-let tracks = [];       // { title, src, plays, objectUrl? }
-let currentTrack = -1;
-let isPlaying = false;
-let shuffle = false;
-let repeat = false;
-let playsToday = 0;
-let totalPlays = 0;
-let progressInterval = null;
+/* =====================================================================
+   ENGINE — no need to edit below this line
+   ===================================================================== */
 
 const audio = document.getElementById("audio-player");
+let tracks       = CONFIG.tracks.map(t => ({ ...t, plays: 0 }));
+let currentTrack = -1;
+let isPlaying    = false;
+let shuffle      = false;
+let repeat       = false;
+let playsToday   = 0;
+let totalPlays   = 0;
+let progressInterval = null;
 
-/* =====================================================================
-   RENDER PROFILE
-   ===================================================================== */
+/* ---- render profile ---- */
 function renderProfile() {
-  document.getElementById("disp-name").textContent  = profile.name;
-  document.getElementById("disp-name2").textContent = profile.name;
-  document.getElementById("disp-name3").textContent = profile.name + ": General Info";
+  const c = CONFIG;
+  const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+
+  set("disp-name",        c.name);
+  set("disp-name2",       c.name);
+  set("disp-genre",       c.genre);
+  set("disp-views",       c.profileViews.toLocaleString());
+  set("disp-lastlogin",   new Date().toLocaleDateString());
+  set("disp-url",         "www.myspace.com/" + c.urlSlug);
+  set("disp-info-header", c.name + ": General Info");
+  set("now-playing-artist", c.name);
+  set("info-since",       c.memberSince);
+  set("info-members",     c.bandMembers);
+  set("info-influences",  c.influences);
+  set("info-label",       c.label);
+  set("disp-about-name",  c.name);
+
+  document.getElementById("disp-location").innerHTML = c.location.replace(/\n/g, "<br>");
   document.getElementById("disp-blog-header").innerHTML =
-    profile.name + "'s Latest Blog Entry &nbsp;<a href=\"#\" style=\"font-size:10px;font-weight:normal\">[Subscribe to this Blog]</a>";
-  document.getElementById("disp-about-name").textContent = profile.name;
-  document.getElementById("disp-genre").textContent = profile.genre;
-  document.getElementById("disp-location").innerHTML = profile.location.replace(/\n/g, "<br>");
-  document.getElementById("disp-url").textContent = "www.myspace.com/" + profile.url;
-  document.getElementById("disp-url").href = "#";
-  document.getElementById("disp-views").textContent = profile.views.toLocaleString();
-  document.getElementById("disp-lastlogin").textContent = profile.lastlogin;
-  document.getElementById("info-since").textContent = profile.since;
-  document.getElementById("info-members").textContent = profile.members;
-  document.getElementById("info-influences").textContent = profile.influences;
-  document.getElementById("info-label").textContent = profile.label;
-  document.getElementById("disp-about").innerHTML = profile.about.split("\n").map(p => `<p>${p}</p>`).join("");
-  document.getElementById("now-playing-artist").textContent = profile.name;
+    c.name + "'s Latest Blog Entry &nbsp;<a href=\"#\" style=\"font-size:10px;font-weight:normal\">[Subscribe to this Blog]</a>";
+  document.getElementById("disp-about").innerHTML =
+    c.about.split("\n").filter(Boolean).map(p => `<p>${escHtml(p)}</p>`).join("");
+
+  // Photo
+  if (c.photoSrc) {
+    document.getElementById("photo-wrap").innerHTML =
+      `<img src="${c.photoSrc}" class="artist-photo" alt="${escHtml(c.name)}">`;
+  }
+
   renderShows();
+  renderTracklist();
+  updateCounts();
 }
 
-/* =====================================================================
-   SHOWS
-   ===================================================================== */
+/* ---- shows ---- */
 function renderShows() {
   const tb = document.getElementById("shows-table");
-  if (!shows.length) {
-    tb.innerHTML = `<tr><td colspan="4" style="color:#888;text-align:center">No shows added yet</td></tr>`;
+  if (!CONFIG.shows.length) {
+    tb.innerHTML = `<tr><td colspan="4" style="color:#888;text-align:center;background:#fff;padding:6px">No upcoming shows</td></tr>`;
     return;
   }
-  tb.innerHTML = shows.map((s,i) => `
+  tb.innerHTML = CONFIG.shows.map(s => `
     <tr>
-      <td class="show-date">${s.date}</td>
-      <td class="show-time">${s.time}</td>
-      <td class="show-venue"><a href="#">${s.venue}</a></td>
-      <td class="show-location">${s.location}</td>
+      <td class="show-date">${escHtml(s.date)}</td>
+      <td class="show-time">${escHtml(s.time)}</td>
+      <td class="show-venue"><a href="#">${escHtml(s.venue)}</a></td>
+      <td class="show-location">${escHtml(s.location)}</td>
     </tr>`).join("");
 }
 
-let showInputCount = 0;
-function addShowInput() {
-  const wrap = document.getElementById("show-inputs");
-  const idx = showInputCount++;
-  const d = document.createElement("div");
-  d.style.cssText = "border:1px solid var(--border);padding:6px;margin-bottom:4px;border-radius:2px;background:#f8faff";
-  d.innerHTML = `
-    <div class="upload-row"><label>Date:</label><input type="text" placeholder="Mar 20 2010" id="show-date-${idx}" style="width:100%"></div>
-    <div class="upload-row"><label>Time:</label><input type="text" placeholder="7:00P" id="show-time-${idx}"></div>
-    <div class="upload-row"><label>Venue:</label><input type="text" placeholder="Venue Name" id="show-venue-${idx}"></div>
-    <div class="upload-row"><label>Location:</label><input type="text" placeholder="City, State" id="show-loc-${idx}"></div>
-    <button class="btn-small" onclick="commitShow(${idx},this)" style="background:var(--green);border-color:#2a6a2a">+ Add</button>`;
-  wrap.appendChild(d);
-}
-
-function commitShow(idx, btn) {
-  const show = {
-    date: document.getElementById("show-date-"+idx)?.value || "",
-    time: document.getElementById("show-time-"+idx)?.value || "",
-    venue: document.getElementById("show-venue-"+idx)?.value || "",
-    location: document.getElementById("show-loc-"+idx)?.value || ""
-  };
-  if (!show.venue) { alert("Please enter a venue name."); return; }
-  shows.push(show);
-  btn.closest("div").remove();
-  renderShows();
-}
-
-function openEditShows() {
-  document.getElementById("edit-modal").classList.add("open");
-}
-function closeModal() {
-  document.getElementById("edit-modal").classList.remove("open");
-}
-
-/* =====================================================================
-   CUSTOMISE PANEL
-   ===================================================================== */
-function toggleCustomise() {
-  const b = document.getElementById("customise-body");
-  b.style.display = b.style.display === "none" ? "block" : "none";
-}
-
-function loadPhoto(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const url = URL.createObjectURL(file);
-  const wrap = document.getElementById("photo-wrap");
-  wrap.innerHTML = `<img src="${url}" class="artist-photo" alt="Artist photo">`;
-}
-
-function applyChanges() {
-  const g = id => document.getElementById(id)?.value.trim();
-  if (g("inp-name")) profile.name = g("inp-name");
-  if (g("inp-genre")) profile.genre = g("inp-genre");
-  if (g("inp-location")) profile.location = g("inp-location");
-  if (g("inp-url")) profile.url = g("inp-url");
-  if (g("inp-since")) profile.since = g("inp-since");
-  if (g("inp-members")) profile.members = g("inp-members");
-  if (g("inp-influences")) profile.influences = g("inp-influences");
-  if (g("inp-label")) profile.label = g("inp-label");
-  if (g("inp-about")) profile.about = g("inp-about");
-  renderProfile();
-  // Flash confirm
-  const btn = event.target;
-  btn.textContent = "✓ Saved!";
-  setTimeout(() => btn.textContent = "✓ Apply Changes", 1500);
-}
-
-/* =====================================================================
-   PLAYER
-   ===================================================================== */
+/* ---- player ---- */
 function addTrack() {
-  const title = document.getElementById("track-title-inp").value.trim();
+  const title   = document.getElementById("track-title-inp").value.trim();
   const fileInp = document.getElementById("track-file-inp");
   const urlInp  = document.getElementById("track-url-inp").value.trim();
-
   if (!title) { alert("Please enter a track title."); return; }
-
-  let src = null;
-  let objectUrl = null;
-
+  let src = null, objectUrl = null;
   if (fileInp.files.length > 0) {
     objectUrl = URL.createObjectURL(fileInp.files[0]);
     src = objectUrl;
@@ -1098,10 +480,9 @@ function addTrack() {
   } else {
     alert("Please choose a file or enter a URL."); return;
   }
-
   tracks.push({ title, src, plays: 0, objectUrl });
   document.getElementById("track-title-inp").value = "";
-  document.getElementById("track-url-inp").value = "";
+  document.getElementById("track-url-inp").value   = "";
   fileInp.value = "";
   renderTracklist();
   updateCounts();
@@ -1112,32 +493,14 @@ function renderTracklist() {
   const el = document.getElementById("tracklist");
   if (!tracks.length) { el.innerHTML = ""; return; }
   el.innerHTML = tracks.map((t, i) => `
-    <div class="track-row ${i === currentTrack ? 'active' : ''}" onclick="loadTrack(${i})">
+    <div class="track-row ${i === currentTrack ? "active" : ""}" onclick="loadTrack(${i})">
       <div class="track-play-icon">${i === currentTrack && isPlaying ? "▶" : "●"}</div>
-      <div>
+      <div style="flex:1">
         <div class="track-title">${escHtml(t.title)}</div>
-        <div class="track-artist">${escHtml(profile.name)}</div>
+        <div class="track-artist">${escHtml(CONFIG.name)}</div>
       </div>
       <div class="track-plays">${t.plays} play${t.plays !== 1 ? "s" : ""}</div>
-      <div class="track-dots" onclick="removeTrack(event,${i})">✕</div>
     </div>`).join("");
-}
-
-function removeTrack(e, i) {
-  e.stopPropagation();
-  if (tracks[i].objectUrl) URL.revokeObjectURL(tracks[i].objectUrl);
-  tracks.splice(i, 1);
-  if (currentTrack === i) {
-    audio.pause();
-    isPlaying = false;
-    currentTrack = -1;
-    document.getElementById("now-playing-title").textContent = "No track loaded";
-    document.getElementById("play-btn").textContent = "▶";
-  } else if (currentTrack > i) {
-    currentTrack--;
-  }
-  renderTracklist();
-  updateCounts();
 }
 
 function loadTrack(i) {
@@ -1148,9 +511,7 @@ function loadTrack(i) {
   audio.src = t.src;
   audio.load();
   document.getElementById("now-playing-title").textContent = t.title;
-  t.plays++;
-  playsToday++;
-  totalPlays++;
+  t.plays++; playsToday++; totalPlays++;
   updateCounts();
   renderTracklist();
   audio.play().then(() => {
@@ -1168,8 +529,7 @@ function togglePlay() {
   if (!tracks.length) return;
   if (currentTrack === -1) { loadTrack(0); return; }
   if (isPlaying) {
-    audio.pause();
-    isPlaying = false;
+    audio.pause(); isPlaying = false;
     document.getElementById("play-btn").textContent = "▶";
     clearInterval(progressInterval);
   } else {
@@ -1183,20 +543,14 @@ function togglePlay() {
 
 function prevTrack() {
   if (!tracks.length) return;
-  let n = currentTrack - 1;
-  if (n < 0) n = tracks.length - 1;
-  loadTrack(n);
+  loadTrack(currentTrack <= 0 ? tracks.length - 1 : currentTrack - 1);
 }
 
 function nextTrack() {
   if (!tracks.length) return;
-  let n;
-  if (shuffle) {
-    n = Math.floor(Math.random() * tracks.length);
-  } else {
-    n = currentTrack + 1;
-    if (n >= tracks.length) n = repeat ? 0 : 0;
-  }
+  const n = shuffle
+    ? Math.floor(Math.random() * tracks.length)
+    : (currentTrack + 1 >= tracks.length ? 0 : currentTrack + 1);
   loadTrack(n);
 }
 
@@ -1208,74 +562,54 @@ function toggleRepeat() {
   repeat = !repeat;
   document.getElementById("repeat-btn").style.opacity = repeat ? "1" : "0.4";
 }
-
 function setVolume(v) { audio.volume = v; }
 
 audio.addEventListener("ended", () => {
   isPlaying = false;
   document.getElementById("play-btn").textContent = "▶";
   clearInterval(progressInterval);
-  if (repeat) {
-    loadTrack(currentTrack);
-  } else {
-    const next = currentTrack + 1;
-    if (next < tracks.length) loadTrack(next);
-  }
+  if (repeat) loadTrack(currentTrack);
+  else if (currentTrack + 1 < tracks.length) loadTrack(currentTrack + 1);
 });
 
 function startProgress() {
   clearInterval(progressInterval);
-  progressInterval = setInterval(updateProgress, 500);
-}
-
-function updateProgress() {
-  if (!audio.duration || isNaN(audio.duration)) return;
-  const pct = (audio.currentTime / audio.duration) * 100;
-  document.getElementById("progress-bar-fill").style.width = pct + "%";
-  document.getElementById("current-time").textContent = fmtTime(audio.currentTime);
-  document.getElementById("total-time").textContent = fmtTime(audio.duration);
+  progressInterval = setInterval(() => {
+    if (!audio.duration || isNaN(audio.duration)) return;
+    document.getElementById("progress-bar-fill").style.width = (audio.currentTime / audio.duration * 100) + "%";
+    document.getElementById("current-time").textContent = fmtTime(audio.currentTime);
+    document.getElementById("total-time").textContent   = fmtTime(audio.duration);
+  }, 500);
 }
 
 function seekTo(e) {
   if (!audio.duration) return;
   const rect = e.currentTarget.getBoundingClientRect();
-  const pct = (e.clientX - rect.left) / rect.width;
-  audio.currentTime = pct * audio.duration;
-  updateProgress();
+  audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
 }
 
 function fmtTime(s) {
   if (isNaN(s)) return "0:00";
-  const m = Math.floor(s / 60);
-  const sec = Math.floor(s % 60).toString().padStart(2, "0");
-  return `${m}:${sec}`;
+  return `${Math.floor(s / 60)}:${Math.floor(s % 60).toString().padStart(2, "0")}`;
 }
 
 function updateCounts() {
   document.getElementById("plays-today").textContent = playsToday;
   document.getElementById("plays-total").textContent = totalPlays;
-  renderTracklist();
 }
 
-function setTab(el, name) {
+function setTab(el) {
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
   el.classList.add("active");
 }
 
-/* =====================================================================
-   UTILS
-   ===================================================================== */
 function escHtml(s) {
-  return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 }
 
-function id(x) { return document.getElementById(x); }
-
-/* =====================================================================
-   INIT
-   ===================================================================== */
+/* ---- init ---- */
 document.getElementById("shuffle-btn").style.opacity = "0.4";
-document.getElementById("repeat-btn").style.opacity = "0.4";
+document.getElementById("repeat-btn").style.opacity  = "0.4";
 audio.volume = 0.8;
 renderProfile();
 </script>
