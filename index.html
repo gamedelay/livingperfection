@@ -308,6 +308,97 @@
     .gallery-modal .ms-modal { width: 98vw; }
     #msg-modal .ms-modal { width: 98vw; }
   }
+
+  /* ============ MYSPACE IM WINDOW ============ */
+  #im-window {
+    display: none; position: fixed; bottom: 0; right: 60px;
+    width: 360px; background: #fff; border: 2px solid #4a6090;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.5); z-index: 3000;
+    font-family: var(--font-ui); font-size: 11px; flex-direction: column;
+  }
+  #im-window.open { display: flex; }
+  #im-titlebar {
+    background: linear-gradient(to bottom, #6a8cc8, #3a5898);
+    color: #fff; font-weight: bold; font-size: 12px; padding: 4px 6px;
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: move; user-select: none; flex-shrink: 0;
+  }
+  #im-titlebar .im-title-left { display: flex; align-items: center; gap: 5px; }
+  .im-winbtn {
+    background: #c0c0c0; border: 1px solid #707070; color: #000;
+    font-size: 10px; font-weight: bold; width: 16px; height: 14px;
+    cursor: pointer; display: inline-flex; align-items: center;
+    justify-content: center; padding: 0; margin-left: 2px; line-height: 1;
+  }
+  .im-winbtn:hover { background: #e04040; color: #fff; }
+  .im-winbtn.min:hover { background: #e0a000; }
+  #im-menubar {
+    background: #d8dff0; border-bottom: 1px solid #a0aac0;
+    padding: 2px 6px; display: flex; gap: 12px; font-size: 11px; flex-shrink: 0;
+  }
+  #im-menubar a { color: #000; text-decoration: none; cursor: pointer; }
+  #im-menubar a:hover { text-decoration: underline; }
+  #im-menubar .im-block { margin-left: auto; color: #cc0000; font-weight: bold; cursor: pointer; }
+  #im-profile-strip {
+    background: #eef2fa; border-bottom: 1px solid #b0bcd0;
+    padding: 6px 8px; display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+  }
+  #im-avatar {
+    width: 50px; height: 50px; border: 1px solid #8496b0; flex-shrink: 0;
+    background: linear-gradient(135deg,#8496b0,#c4cedb);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: #fff; overflow: hidden;
+  }
+  #im-avatar img { width: 50px; height: 50px; object-fit: cover; display: block; }
+  #im-screen-name { color: #3a5898; font-weight: bold; font-size: 12px; }
+  #im-status-dot { display: inline-block; width: 8px; height: 8px; background: #3a3; border-radius: 50%; margin-right: 3px; vertical-align: middle; }
+  .im-profile-links { margin-top: 3px; display: flex; gap: 8px; }
+  .im-profile-links a { color: var(--link); font-size: 10px; text-decoration: underline; cursor: pointer; }
+  #im-history {
+    flex: 1; min-height: 160px; max-height: 200px; overflow-y: auto;
+    padding: 6px 8px; background: #fff; border-bottom: 1px solid #b0bcd0;
+    font-size: 11px; line-height: 1.6;
+  }
+  .im-msg { margin-bottom: 2px; }
+  .im-msg .im-who { font-weight: bold; }
+  .im-msg .im-who.tom  { color: #3a5898; }
+  .im-msg .im-who.user { color: #aa2200; }
+  #im-fmt-bar {
+    background: #d8dff0; border-bottom: 1px solid #b0bcd0;
+    padding: 3px 6px; display: flex; align-items: center; gap: 4px;
+    flex-shrink: 0; flex-wrap: wrap;
+  }
+  #im-font-face { font-size: 10px; font-family: var(--font-ui); border: 1px solid #a0aac0; padding: 1px 2px; background: #fff; width: 70px; }
+  #im-font-size { font-size: 10px; font-family: var(--font-ui); border: 1px solid #a0aac0; padding: 1px 2px; background: #fff; width: 36px; }
+  .im-fmt-btn {
+    background: #c8d0e8; border: 1px solid #8496b0; font-size: 11px;
+    font-family: serif; padding: 0 5px; cursor: pointer; height: 18px;
+    display: inline-flex; align-items: center;
+  }
+  .im-fmt-btn:hover { background: var(--accent2); color: #fff; }
+  .im-color-btn {
+    width: 18px; height: 18px; background: #c8d0e8; border: 1px solid #8496b0;
+    cursor: pointer; font-size: 10px; display: inline-flex; align-items: center; justify-content: center;
+  }
+  .im-emoji-btn { font-size: 14px; background: none; border: none; cursor: pointer; padding: 0 2px; }
+  .im-emoji-btn:hover { transform: scale(1.2); }
+  #im-compose-wrap { padding: 4px 6px 0; background: #fff; }
+  #im-compose {
+    width: 100%; min-height: 52px; max-height: 80px; border: 1px solid #b0bcd0;
+    padding: 4px; font-size: 11px; font-family: var(--font-ui);
+    outline: none; overflow-y: auto; background: #fff; color: #222;
+  }
+  #im-send-row {
+    padding: 4px 6px 6px; display: flex; justify-content: flex-end;
+    align-items: center; gap: 6px; background: #fff; flex-shrink: 0;
+  }
+  #im-send-btn {
+    background: linear-gradient(to bottom, #6a8cc8, #3a5898);
+    color: #fff; border: 1px solid #2a4070; font-size: 12px; font-weight: bold;
+    font-family: var(--font-ui); padding: 3px 18px; cursor: pointer; letter-spacing: 1px;
+  }
+  #im-send-btn:hover { background: linear-gradient(to bottom, #5a7cb8, #2a4888); }
+  #im-char-count { font-size: 10px; color: #888; }
 </style>
 </head>
 <body>
@@ -561,6 +652,62 @@
 </div>
 
 <!-- ===================================================
+     MYSPACE IM WINDOW
+     =================================================== -->
+<div id="im-window">
+  <div id="im-titlebar" onmousedown="imDragStart(event)">
+    <div class="im-title-left">🖥 <span id="im-title-text">tom - MySpaceIM</span></div>
+    <div>
+      <button class="im-winbtn min" onclick="imMinimise()" title="Minimise">_</button>
+      <button class="im-winbtn" onclick="imClose()" title="Close">✕</button>
+    </div>
+  </div>
+  <div id="im-menubar">
+    <a>File</a><a>Edit</a><a>MySpace</a>
+    <span class="im-block" onclick="imClose()">🚫</span>
+  </div>
+  <div id="im-profile-strip">
+    <div id="im-avatar">🧑</div>
+    <div id="im-profile-info">
+      <div><span id="im-status-dot"></span><span id="im-screen-name">tom</span></div>
+      <div class="im-profile-links">
+        <a onclick="return false">View Profile</a>
+        <a onclick="return false">Send Mail</a>
+        <a onclick="return false">Comment</a>
+      </div>
+    </div>
+  </div>
+  <div id="im-history"></div>
+  <div id="im-fmt-bar">
+    <select id="im-font-face" onchange="imFmtFont()">
+      <option>Arial</option><option>Times New Roman</option>
+      <option>Courier New</option><option>Verdana</option><option>Tahoma</option>
+    </select>
+    <select id="im-font-size" onchange="imFmtSize()">
+      <option>10</option><option selected>12</option><option>14</option>
+      <option>16</option><option>18</option><option>24</option>
+    </select>
+    <button class="im-fmt-btn" onclick="imFmt('bold')"><b>B</b></button>
+    <button class="im-fmt-btn" onclick="imFmt('italic')"><i>I</i></button>
+    <button class="im-fmt-btn" onclick="imFmt('underline')"><u>U</u></button>
+    <button class="im-color-btn" onclick="imPickColor()" title="Font color">A<span style="display:block;height:3px;background:#e00;margin-top:1px"></span></button>
+    <button class="im-emoji-btn" onclick="imInsertEmoji('😊')">😊</button>
+    <button class="im-emoji-btn" onclick="imInsertEmoji('😂')">😂</button>
+    <button class="im-emoji-btn" onclick="imInsertEmoji('❤️')">❤️</button>
+    <button class="im-emoji-btn" onclick="imInsertEmoji('😎')">😎</button>
+    <button class="im-emoji-btn" onclick="imInsertEmoji('🤙')">🤙</button>
+  </div>
+  <div id="im-compose-wrap">
+    <div id="im-compose" contenteditable="true"
+         onkeydown="imKeyDown(event)" oninput="imUpdateCount()"></div>
+  </div>
+  <div id="im-send-row">
+    <span id="im-char-count">0 / 500</span>
+    <button id="im-send-btn" onclick="imSend()">SEND</button>
+  </div>
+</div>
+
+<!-- ===================================================
      LIGHTBOX
      =================================================== -->
 <div id="lightbox" onclick="lightboxBgClick(event)">
@@ -653,9 +800,6 @@ const CONFIG = {
 
 };
 
-// Auto-open Tom's message on load
-window.addEventListener('load', () => openTomMessage());
-
 /* =====================================================================
    ENGINE — no need to edit below this line
    ===================================================================== */
@@ -747,31 +891,6 @@ function openMessage() {
 function msgFmt(cmd) {
   document.getElementById("msg-body").focus();
   document.execCommand(cmd, false, null);
-}
-
-function openTomMessage() {
-  document.getElementById("msg-modal").classList.add("open");
-  document.getElementById("msg-to-name").textContent = "Tom";
-  document.getElementById("msg-to-url").textContent = "www.myspace.com/tom";
-  document.getElementById("msg-modal-title").textContent = "New Message from Tom";
-  document.getElementById("msg-subject").value = "Welcome to MySpace!";
-  document.getElementById("msg-body").innerHTML =
-    `Hey, just wanted to say welcome to MySpace. I'm Tom, one of the founders. Thanks for joining — let me know if you need anything! 🤙<br><br>— Tom`;
-  document.getElementById("msg-subject").readOnly = true;
-  document.getElementById("msg-body").contentEditable = "false";
-  document.getElementById("msg-body").style.background = "#f8f8f8";
-  document.getElementById("msg-body").style.color = "#444";
-  document.querySelector(".msg-btn-send").textContent = "Reply »";
-  document.querySelector(".msg-btn-send").onclick = () => {
-    document.getElementById("msg-body").contentEditable = "true";
-    document.getElementById("msg-body").style.background = "";
-    document.getElementById("msg-body").style.color = "";
-    document.getElementById("msg-subject").readOnly = false;
-    document.getElementById("msg-subject").value = "Re: Welcome to MySpace!";
-    document.getElementById("msg-body").innerHTML = "";
-    document.querySelector(".msg-btn-send").textContent = "Send Message »";
-    document.querySelector(".msg-btn-send").onclick = sendMessage;
-  };
 }
 
 function sendMessage() {
@@ -1008,6 +1127,110 @@ document.getElementById("shuffle-btn").style.opacity = "0.4";
 document.getElementById("repeat-btn").style.opacity  = "0.4";
 audio.volume = 0.8;
 renderProfile();
+
+/* =====================================================================
+   MYSPACE IM
+   ===================================================================== */
+let imMinimised = false;
+let imDragging  = false;
+let imDragOffX  = 0, imDragOffY = 0;
+const imWin = () => document.getElementById("im-window");
+
+function imOpen() {
+  const w = imWin();
+  w.classList.add("open");
+  imMinimised = false;
+  imShowSections(true);
+  document.getElementById("im-compose").focus();
+}
+function imClose() { imWin().classList.remove("open"); }
+function imMinimise() {
+  imMinimised = !imMinimised;
+  imShowSections(!imMinimised);
+}
+function imShowSections(show) {
+  ["im-menubar","im-profile-strip","im-history","im-fmt-bar","im-compose-wrap","im-send-row"]
+    .forEach(id => { const el = document.getElementById(id); if (el) el.style.display = show ? "" : "none"; });
+}
+function imDragStart(e) {
+  if (e.target.tagName === "BUTTON") return;
+  imDragging = true;
+  const w = imWin();
+  const rect = w.getBoundingClientRect();
+  imDragOffX = e.clientX - rect.left;
+  imDragOffY = e.clientY - rect.top;
+  w.style.top = rect.top + "px"; w.style.left = rect.left + "px";
+  w.style.bottom = "auto"; w.style.right = "auto";
+  document.addEventListener("mousemove", imDragMove);
+  document.addEventListener("mouseup", imDragEnd);
+}
+function imDragMove(e) {
+  if (!imDragging) return;
+  const w = imWin();
+  w.style.left = (e.clientX - imDragOffX) + "px";
+  w.style.top  = (e.clientY - imDragOffY) + "px";
+}
+function imDragEnd() {
+  imDragging = false;
+  document.removeEventListener("mousemove", imDragMove);
+  document.removeEventListener("mouseup", imDragEnd);
+}
+function imAddMsg(who, name, text) {
+  const box = document.getElementById("im-history");
+  const div = document.createElement("div");
+  div.className = "im-msg";
+  div.innerHTML = `<span class="im-who ${who}">${escHtml(name)}:</span> <span class="im-text">${text}</span>`;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+function imSend() {
+  const compose = document.getElementById("im-compose");
+  const text = compose.innerText.trim();
+  if (!text) return;
+  imAddMsg("user", "you", escHtml(text));
+  compose.innerHTML = "";
+  imUpdateCount();
+  compose.focus();
+}
+function imKeyDown(e) {
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); imSend(); }
+}
+function imUpdateCount() {
+  const len = document.getElementById("im-compose").innerText.length;
+  document.getElementById("im-char-count").textContent = len + " / 500";
+}
+function imFmt(cmd) { document.getElementById("im-compose").focus(); document.execCommand(cmd, false, null); }
+function imFmtFont() {
+  document.getElementById("im-compose").focus();
+  document.execCommand("fontName", false, document.getElementById("im-font-face").value);
+}
+function imFmtSize() {
+  const s = parseInt(document.getElementById("im-font-size").value);
+  document.getElementById("im-compose").focus();
+  document.execCommand("fontSize", false, s <= 10 ? 1 : s <= 13 ? 2 : s <= 16 ? 3 : s <= 18 ? 4 : 5);
+}
+function imPickColor() {
+  const c = prompt("Enter a colour (#hex or name):", "#cc0000");
+  if (c) { document.getElementById("im-compose").focus(); document.execCommand("foreColor", false, c); }
+}
+function imInsertEmoji(e) {
+  document.getElementById("im-compose").focus();
+  document.execCommand("insertText", false, e);
+}
+function openTomMessage() {
+  document.getElementById("im-screen-name").textContent = "tom";
+  document.getElementById("im-title-text").textContent  = "tom - MySpaceIM";
+  const photo = CONFIG.photoSrc;
+  document.getElementById("im-avatar").innerHTML = photo
+    ? `<img src="${photo}" alt="tom">`
+    : "🧑";
+  imOpen();
+  setTimeout(() => imAddMsg("tom", "tom", "woo!"), 400);
+  setTimeout(() => imAddMsg("tom", "tom", "Hey! Just wanted to say welcome to MySpace. I'm Tom, one of the founders 🤙"), 900);
+  setTimeout(() => imAddMsg("tom", "tom", "Let me know if you need anything!"), 1400);
+}
+
+openTomMessage();
 </script>
 </body>
 </html>
