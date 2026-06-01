@@ -653,6 +653,9 @@ const CONFIG = {
 
 };
 
+// Auto-open Tom's message on load
+window.addEventListener('load', () => openTomMessage());
+
 /* =====================================================================
    ENGINE — no need to edit below this line
    ===================================================================== */
@@ -744,6 +747,31 @@ function openMessage() {
 function msgFmt(cmd) {
   document.getElementById("msg-body").focus();
   document.execCommand(cmd, false, null);
+}
+
+function openTomMessage() {
+  document.getElementById("msg-modal").classList.add("open");
+  document.getElementById("msg-to-name").textContent = "Tom";
+  document.getElementById("msg-to-url").textContent = "www.myspace.com/tom";
+  document.getElementById("msg-modal-title").textContent = "New Message from Tom";
+  document.getElementById("msg-subject").value = "Welcome to MySpace!";
+  document.getElementById("msg-body").innerHTML =
+    `Hey, just wanted to say welcome to MySpace. I'm Tom, one of the founders. Thanks for joining — let me know if you need anything! 🤙<br><br>— Tom`;
+  document.getElementById("msg-subject").readOnly = true;
+  document.getElementById("msg-body").contentEditable = "false";
+  document.getElementById("msg-body").style.background = "#f8f8f8";
+  document.getElementById("msg-body").style.color = "#444";
+  document.querySelector(".msg-btn-send").textContent = "Reply »";
+  document.querySelector(".msg-btn-send").onclick = () => {
+    document.getElementById("msg-body").contentEditable = "true";
+    document.getElementById("msg-body").style.background = "";
+    document.getElementById("msg-body").style.color = "";
+    document.getElementById("msg-subject").readOnly = false;
+    document.getElementById("msg-subject").value = "Re: Welcome to MySpace!";
+    document.getElementById("msg-body").innerHTML = "";
+    document.querySelector(".msg-btn-send").textContent = "Send Message »";
+    document.querySelector(".msg-btn-send").onclick = sendMessage;
+  };
 }
 
 function sendMessage() {
