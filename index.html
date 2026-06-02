@@ -302,13 +302,20 @@
   }
   #lightbox-nav button:hover { background: var(--accent); }
 
-  @media (max-width: 640px) {
-    #page { grid-template-columns: 1fr; }
-    #main-nav .right { display: none; }
-    #search-bar { max-width: 200px; }
-    .gallery-modal .ms-modal { width: 98vw; }
-    #msg-modal .ms-modal { width: 98vw; }
-  }
+@media (max-width: 640px) {
+  #page { grid-template-columns: 1fr; }
+  #main-nav { flex-wrap: wrap; }
+  #main-nav .left { flex-wrap: wrap; overflow-x: auto; width: 100%; }
+  #main-nav .left a { font-size: 11px; padding: 5px 6px; }
+  #main-nav .right { display: none; }
+  #music-nav { flex-wrap: wrap; overflow-x: auto; }
+  #music-nav a { font-size: 10px; padding: 4px 5px; }
+  #search-bar { max-width: 200px; }
+  #header { flex-wrap: wrap; gap: 6px; }
+  .gallery-modal .ms-modal { width: 98vw; }
+  #msg-modal .ms-modal { width: 98vw; }
+  #im-window { width: 98vw; right: 1vw; }
+}
 
   /* ============ MYSPACE IM WINDOW ============ */
   #im-window {
