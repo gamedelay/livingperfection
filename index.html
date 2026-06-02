@@ -305,7 +305,8 @@
 @media (max-width: 640px) {
   #page { grid-template-columns: 1fr; }
   #main-nav { overflow-x: auto; }
-  #main-nav .left { overflow-x: auto; width: 100%; }
+  #main-nav .left { flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; width: 100%; }
+  #main-nav .left a { flex-shrink: 0; }
   #main-nav .left a { font-size: 11px; padding: 5px 6px; }
   #main-nav .right { display: none; }
   #music-nav { flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; }
@@ -315,7 +316,7 @@
   #header {  overflow-x: auto; gap: 6px; }
   .gallery-modal .ms-modal { width: 98vw; }
   #msg-modal .ms-modal { width: 98vw; }
-  #im-window { width: 98vw; right: 1vw; }
+  #im-window { width: 98vw; left: 50%; transform: translateX(-50%); right: auto; }
 }
 
   /* ============ MYSPACE IM WINDOW ============ */
