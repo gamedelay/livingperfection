@@ -1149,6 +1149,7 @@ loadTrack(0);
 /* =====================================================================
    MYSPACE IM
    ===================================================================== */
+let imChatHistory = [];
 let imMinimised = false;
 let imDragging  = false;
 let imDragOffX  = 0, imDragOffY = 0;
@@ -1201,7 +1202,7 @@ function imAddMsg(who, name, text) {
   box.appendChild(div);
   box.scrollTop = box.scrollHeight;
 }
-function imSend() {
+async function imSend() {
   const compose = document.getElementById("im-compose");
   const text = compose.innerText.trim();
   if (!text) return;
@@ -1209,6 +1210,38 @@ function imSend() {
   compose.innerHTML = "";
   imUpdateCount();
   compose.focus();
+
+  const typing = document.createElement("div");
+  typing.className = "im-msg";
+  typing.id = "im-typing";
+  typing.innerHTML = `<span class="im-who tom">tom:</span> <span class="im-text" style="color:#888;font-style:italic">typing...</span>`;
+  document.getElementById("im-history").appendChild(typing);
+  document.getElementById("im-history").scrollTop = document.getElementById("im-history").scrollHeight;
+
+  try {
+    const response = await fetch("https://ouichef-proxy.bundi-devoy.workers.dev", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        system: `You are Tom from MySpace — the friendly co-founder who was everyone's first friend on the platform. It's the mid-2000s. You're casual, enthusiastic, use early internet slang occasionally (lol, omg, brb etc), keep replies short like a real IM chat (1-3 sentences max), and you're genuinely interested in the music of the person you're talking to. The artist you're chatting with is ${CONFIG.name}, who makes ${CONFIG.genre} music from ${CONFIG.location}. Stay in character always.`,
+        messages: imChatHistory.concat([{ role: "user", content: text }])
+      })
+    });
+    const data = await response.json();
+    const reply = data.content[0].text;
+    imChatHistory.push({ role: "user", content: text });
+    imChatHistory.push({ role: "assistant", content: reply });
+    document.getElementById("im-typing")?.remove();
+    imAddMsg("tom", "tom", escHtml(reply));
+  } catch (err) {
+    console.error("Tom IM error:", err);
+    document.getElementById("im-typing")?.remove();
+    imAddMsg("tom", "tom", "sry having connection issues brb lol");
+  }
 }
 function imKeyDown(e) {
   if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); imSend(); }
