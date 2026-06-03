@@ -809,7 +809,7 @@ const CONFIG = {
        { src: "videos/mv.mp4", caption: "Official Music Video" }       */
   videos: [
     // { src: "video.mp4", caption: "Caption here" },
-    { src: "images/dance.mov",   caption: "Boogie" },
+    { src: "images/dance.mov",   caption: "Boogie", thumb: "images/boogie.jpeg" },
   ],
 
 };
@@ -946,8 +946,10 @@ function renderGallery(type) {
   grid.innerHTML = items.map((item, i) => {
     const src = item.objUrl || item.src;
     const thumb = type === 'pics'
-      ? `<img src="${escHtml(src)}" alt="${escHtml(item.caption||'')}" loading="lazy">`
-      : `<div class="thumb-placeholder">▶</div>`;
+  ? `<img src="${escHtml(src)}" alt="${escHtml(item.caption||'')}" loading="lazy">`
+  : item.thumb
+    ? `<img src="${escHtml(item.thumb)}" alt="${escHtml(item.caption||'')}" loading="lazy">`
+    : `<div class="thumb-placeholder">▶</div>`;
     return `
       <div class="gallery-thumb" onclick="openLightbox('${type}', ${i})">
         ${thumb}
