@@ -839,7 +839,7 @@ function renderProfile() {
   set("disp-name2",         c.name);
   set("disp-genre",         c.genre);
   set("disp-views",         c.profileViews.toLocaleString());
-  set("disp-lastlogin",     new Date().toLocaleDateString());
+  set("disp-lastlogin",     new Date().toLocaleDateString('en-NZ'));
   set("disp-url",           "www.myspace.com/" + c.urlSlug);
   set("disp-info-header",   c.name + ": General Info");
   set("now-playing-artist", c.name);
